@@ -2,13 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    {% if blog %}
+        <title>{{ blog.title }}</title>
+    {% endif %}
 </head>
 <body>
     {% if blog%}
         <h1>{{ blog.title }}</h1>
         <h4>{{ blog.date_created }}</h4>
-        <p>{{ blog.description }}</p>
+        <p>{{ blog.description|safe }}</p>
     {% endif %}
 </body>
 </html>
