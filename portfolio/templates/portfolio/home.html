@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,13 @@
     <title>Title</title>
 </head>
 <body>
-    hello this is my home page.
+    <h1>hello this is my personal portfolio</h1>
+    <a href="{% url 'blog:blog' %}">Blog</a>
+    <img src="{% static 'portfolio/images/Hassan.jpg' %}" width="200"  alt="Personal image"/>
+    <br/>
+    <a href="{% static 'portfolio/resume.pdf' %}">Resume</a>
+    <br />
+
     {% for project in projects %}
         <h1>{{ project.title }}</h1>
         <p>{{ project.descriprtion }}</p>
