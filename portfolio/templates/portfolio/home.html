@@ -3,24 +3,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="{% static '/css/bootstrap.css' %}"/>
+    <title>Pesonal Portfolio</title>
 </head>
 <body>
-    <h1>hello this is my personal portfolio</h1>
-    <a href="{% url 'blog:blog' %}">Blog</a>
-    <img src="{% static 'portfolio/images/Hassan.jpg' %}" width="200"  alt="Personal image"/>
-    <br/>
-    <a href="{% static 'portfolio/resume.pdf' %}">Resume</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img class="d-inline-block align-text-top" src="{% static 'icons/briefcase.svg' %}" width="40" height="32" alt=""/> Personal Portfolio
+            </a>
+            <button class="navbar-toggler collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="height: 46px"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarColor02" style="">
+                <ul class="navbar-nav me-auto mb-lg-0">
+                    <li class="nav-item me-2 p-2">
+                        <a class="nav-link" href="{% static 'portfolio/resume.pdf' %}">Resume</a>
+                    </li>
+                    <li class="nav-item me-2 p-2">
+                        <a class="nav-link" href="https://twitter.com/HaSSaNDoodiyan">twitter</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link" href="{% url 'blog:blog' %}"><button class="btn btn-primary">Blog</button></a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="text-center">
+            <h1 class="lh-base">Hello<hr/>This is my personal portfolio</h1>
+            <div class="card mx-auto" style="width: 20rem;">
+                <img src="{% static 'portfolio/images/personal_pic.jpg' %}" alt="Personal image"/>
+                <div class="card-body">
+                    <p class="card-text">This is me <b>"Hassan Doodiyan"</b>.
+                    <hr/>
+                    This pic is taken on a cold night in ahvaz.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <br />
-
-    {% for project in projects %}
-        <h1>{{ project.title }}</h1>
-        <p>{{ project.descriprtion }}</p>
-        <img src="{{ project.image.url }}" height="200px" />
-        <br>
-        {% if project.url %}
-            <a href="{{ project.url }}">Link</a>
-        {% endif %}
-    {% endfor %}
+    <div class="container text-center">
+        <hr />
+        <h2 class="h2">List of projects</h2>
+        <div class="row mx-auto">
+            {% for project in projects %}
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 card mx-auto m-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h4 class="card-title p-2">{{ project.title }}</h4>
+                        <p class="card-text p-2">{{ project.descriprtion }}</p>
+                        <img class="p-2" src="{{ project.image.url }}" height="200px" />
+                        <br>
+                        {% if project.url %}
+                            <a href="{{ project.url }}" class="btn btn-primary">Go to Project</a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="{% static '/js/bootstrap.bundle.js' %}"></script>
 </body>
 </html>
